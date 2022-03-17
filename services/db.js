@@ -1,9 +1,9 @@
-const mysql = require("mysql2/promise");
+const sql = require("mssql");
 const config = require("../config");
 
-const query = async (sql, params) => {
-  const connection = await mysql.createConnection(config.db);
-  const [results] = await connection.execute(sql, params);
+const query = async (sentence) => {
+  await sql.connect(config);
+  const [results] = await sql.query`${sentence}`;
 
   return results;
 };

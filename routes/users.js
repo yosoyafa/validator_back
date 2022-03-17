@@ -21,4 +21,13 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+router.get("/test", async (req, res, next) => {
+  try {
+    res.json(await users.test());
+  } catch (err) {
+    console.error(`Error while getting test) `, err.message);
+    next(err);
+  }
+});
+
 module.exports = router;
